@@ -34,7 +34,7 @@
   
 - Class: cmd_question
   Output: "Now it looks much better. For more practice, 
-  let's save the unlisted version of these character strings, and call it better."
+  let's save the unlisted version of these character strings, and call it [better]."
   CorrectAnswer: better = unlist(strsplit(twix, "\n\n"))
   AnswerTests: omnitest(correctExpr='better = unlist(strsplit(twix, "\n\n"))')
   Hint: try typing better = unlist(strsplit(twix, "\n\n"))
@@ -43,7 +43,7 @@
   Output: "Did you notice that the character name GEORGE is misspelled at several lines.
   Luckily, they all start with G and ends with colon. 
   Let's fix the misspelled ones to GEORGE by using gsub() command, 
-  and save the updated one as evenbetter."
+  and save the updated one as [evenbetter]."
   CorrectAnswer: evenbetter = gsub("G.*:", "GEORGE:", better)
   AnswerTests: omnitest(correctExpr='evenbetter = gsub("G.*:", "GEORGE:", better)')
   Hint: try typing evenbetter = gsub("G.*:", "GEORGE:", better)
@@ -51,7 +51,7 @@
 
 - Class: cmd_question
   Output: "Now, why don't we remove all punctuations except for the dollar sign? 
-  again, using gsub() command, and save it as muchbetter. 
+  again, using gsub() command, and save it as [muchbetter]. 
   You will need to use perl=TRUE option in your command"
   CorrectAnswer: muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)
   AnswerTests: omnitest(correctExpr='muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)')
@@ -59,14 +59,14 @@
   
 - Class: cmd_question
   Output: "To better deal with each word, we will convert every word into lower case using tolower() command! 
-  and save this as lower."
+  and save this as [lower]."
   CorrectAnswer: lower = tolower(muchbetter)
   AnswerTests: omnitest(correctExpr='lower = tolower(muchbetter)')
   Hint: try typing lower = tolower(muchbetter)
   
 - Class: cmd_question
   Output: "We will convert the character strings into corpus with Corpus(VectorCorpus()) command.
-  And save this as corpus"
+  And save this as [corpus]"
   CorrectAnswer: corpus = Corpus(VectorSource(lower))
   AnswerTests: omnitest(correctExpr='corpus = Corpus(VectorSource(lower))')
   Hint: try typing corpus = Corpus(VectorSource(lower))
@@ -74,10 +74,10 @@
 - Class: cmd_question
   Output: "Now we will remove all the stop words such as is, a. 
   tm_map() command will help us do that. You need to specify 
-  function(x)removeWords(x,stopwords()) in the command. and save this as cleanwords."
-  CorrectAnswer: cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
-  AnswerTests: omnitest(correctExpr='cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))')
-  Hint: try typing cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
+  function(x) removeWords(x, stopwords()) in the command. and save this as [cleanwords]."
+  CorrectAnswer: cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))
+  AnswerTests: omnitest(correctExpr='cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))')
+  Hint: try typing cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))
   
 - Class: cmd_question
   Output: "What we can do with this cleaned words? We can try making a wordcloud!
