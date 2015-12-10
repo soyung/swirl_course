@@ -25,7 +25,7 @@
   Hint: type twix
 
 - Class: cmd_question
-  Output: "It looks messy, isn't it? We want to make this single character string into a list of character string by each line of the script. 
+  Output: "It looks messy, doesn't it? We want to make this single character string into a list of character string by each line of the script. 
   strsplit() command will do the job for us. 
   Let's divide our example text (twix) by two empty lines."
   CorrectAnswer: strsplit(twix, "\n\n")
