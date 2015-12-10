@@ -1,0 +1,10 @@
+- Class: meta
+  Course: mycourse
+  Lesson: workingexample
+  Author: your name goes here
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.2.21
+
+- Class: text
+  Output: put your text output here

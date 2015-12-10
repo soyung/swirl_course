@@ -1,0 +1,72 @@
+---
+title: "Basics of Regular Expression"
+---
+&nbsp; &nbsp; &nbsp; &nbsp; 
+
+**Regular expression** is a way to communicate with a computer on how to look for patterns in text and what should be done for that patterns. 
+
+&nbsp;
+
+Below, find 3 tables which summarize the basics of regular expression. <br>
+These tables are from Riki Kawaguchi's blog: https://bioinfomagician.wordpress.com/
+
+
+| Function  | Description                      |
+|:---------:|:--------------------------------:|
+|    \\     | escape character                 |
+|   \[ ]    |single character match            |
+|\{ }       | repeats                          |
+|\( )       |refernece or subexpression        |
+|\^         |beginning of a line (not string)  |
+| \$        |end of a line (not string)        |
+|  \|       |alternation (OR)                  |
+|  \*       |zero or more times of repeat      |
+|   \+      |1 or more times of repeat         |
+|   \?      |occur 0 times or once             |
+| \.        | any single character             |
+|\!         |negation (NOT)                    |
+
+*Table1* functional characters used in regular expression and their descriptions
+
+&nbsp; &nbsp; &nbsp; &nbsp;
+
+
+| Function  | Description                               |
+|:---------:|:-----------------------------------------:|
+|  \\t      | tab                                       |
+|   \\n     |new line                                   |
+| \\r       | carriage return                           |
+|\\f        |form feed character (end of page character)|
+|\\s        |a white space                              |
+| \\S       |non white space                            |
+|  \\d      |a digit \[0-9]                             |
+|  \\D      |non digit \[^0-9]                          |
+|   \\w     |word character [a-zA-Z_0-9]                |
+|   \\W     |non word character                         |
+| \\b       | similar to \\W but creates boundary       |
+|\\A        |beginning of a string                      |
+|\\z        | end of a string                           |
+
+*Table2* back slash functions and their descriptions
+
+
+You can combine functions in *Table1* and *Table2* to do more complicated patter matching. 
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; 
+
+
+| Command       | Description                                                                                 |
+|:-------------:|:-------------------------------------------------------------------------------------------:|
+| grep( )       | Return index of the object where regular expression found the string                        |
+| grepl( )      | Return logical values for regular expression matching                                       |
+| regexpr( )    | Return the first position of found string by regular expression                             |
+| gregexpr( )   | Return all positions of found string by regular expression                                  |
+| sub( )        | Substitute a pattern with a given string (first occurrence only)                            |
+| gsub( )       | Globally substitue a pattern with a given string (all occurrences)                          |
+| substr( )     | Return the substring in the giving character positions (start and stop) in given string     |
+| strsplit( )   | Split the input string into parts based on another string (character)                       |
+| regexec( )    | Return the first position of matched pattern in a given string                              |
+| regmatches( ) | Extract or replace matched substrings from match data obtained by gregexpr( ), or regexec( )|
+
+*Table3* base R commands for regular expression. see help page for each command for more details
