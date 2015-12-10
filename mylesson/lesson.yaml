@@ -11,17 +11,18 @@
   This lesson is going to give you some basic tools for regular expression. 
   And with the basic tools, we will dive into the real world example of text mining using tweets."
   
+- Class: figure
+  Output: "Before we start playing with regular expression, let's get familiar with 
+  some of the most used commands and their use. Please read through this page on your viewr,
+  and also utilize help() command to do following exercises."
+  Figure: basic.R
+  FigureType: new
+  
 - Class: cmd_question
   Output: Let's start by looking at an example text extracted from Seinfeld script. Please type twix in your console.
   CorrectAnswer: "twix"
   AnswerTests: omnitest(correctExpr='twix')
   Hint: type twix
-  
-- Class: figure
-  Output: "Before we start playing with regular expression, let's get familiar with 
-  some of the most used commands and their use."
-  Figure: basic.R
-  FigureType: new
 
 - Class: cmd_question
   Output: "It looks messy, isn't it? We want to make this single character string into a list of character string by each line of the script. 
@@ -49,9 +50,43 @@
   
 
 - Class: cmd_question
-  Output: "Now, why don't we remove all the quotation marks except for the dollar sign and colon? 
+  Output: "Now, why don't we remove all punctuations except for the dollar sign? 
   again, using gsub() command, and save it as muchbetter. 
   You will need to use perl=TRUE option in your command"
-  CorrectAnswer: muchbetter = gsub("[^c($:)[:^punct:]]", "", evenbetter, perl=TRUE)
-  AnswerTests: omnitest(correctExpr='muchbetter = gsub("[^c($:)[:^punct:]]", "", evenbetter, perl=TRUE)')
-  Hint: try typing muchbetter = gsub("[^c($:)[:^punct:]]", "", evenbetter, perl=TRUE)
+  CorrectAnswer: muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)
+  AnswerTests: omnitest(correctExpr='muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)')
+  Hint: try typing muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)
+  
+- Class: cmd_question
+  Output: "To better deal with each word, we will convert every word into lower case using tolower() command! 
+  and save this as lower."
+  CorrectAnswer: lower = tolower(muchbetter)
+  AnswerTests: omnitest(correctExpr='lower = tolower(muchbetter)')
+  Hint: try typing lower = tolower(muchbetter)
+  
+- Class: cmd_question
+  Output: "We will convert the character strings into corpus with Corpus(VectorCorpus()) command.
+  And save this as corpus"
+  CorrectAnswer: corpus = Corpus(VectorSource(lower))
+  AnswerTests: omnitest(correctExpr='corpus = Corpus(VectorSource(lower))')
+  Hint: try typing corpus = Corpus(VectorSource(lower))
+  
+- Class: cmd_question
+  Output: "Now we will remove all the stop words such as is, a. 
+  tm_map() command will help us do that. You need to specify 
+  function(x)removeWords(x,stopwords()) in the command. and save this as cleanwords."
+  CorrectAnswer: cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
+  AnswerTests: omnitest(correctExpr='cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))')
+  Hint: try typing cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
+  
+- Class: cmd_question
+  Output: "What we can do with this cleaned words? We can try making a wordcloud!
+  There are many options you can specify in the command wordcloud(), but for now, try type 
+  wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,'Dark2')) in your console."
+  CorrectAnswer: wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,"Dark2"))
+  AnswerTests: omnitest(correctExpr='wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,"Dark2"))')
+  Hint: try typing wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,"Dark2"))
+  
+- Class: text
+  Output: "Congratulations! You've done with basic lesson on text cleaning with regular expression. 
+  Continue on to the workingexample lesson to play with larger and messier text data!"
