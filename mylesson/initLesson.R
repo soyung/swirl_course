@@ -3,7 +3,7 @@
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
 
-.path_to_file <- function(course, lesson, file_name){
+.path_to_file <<- function(course, lesson, file_name){
   file.path(path.package('swirl'), 'Courses', course,
             lesson, file_name)
 }
