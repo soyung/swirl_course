@@ -76,7 +76,7 @@
   tm_map() command will help us do that. You need to specify 
   function(x)removeWords(x,stopwords()) in the command. and save this as cleanwords."
   CorrectAnswer: cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
-  AnswerTests: omnitest(correctExpr='cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))')
+  AnswerTests: tm_map_test()
   Hint: try typing cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
   
 - Class: cmd_question
