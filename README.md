@@ -1,2 +1,4 @@
 # swirl_course
-this is my description :D 
+swirlify project for text cleaning with regular expression
+-mylesson: basic tools for text cleaning and regular expression
+-workingexample: expand to real world data
