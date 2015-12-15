@@ -74,10 +74,17 @@
 - Class: cmd_question
   Output: "Now we will remove all the stop words such as is, a. 
   tm_map() command will help us do that. You need to specify 
+<<<<<<< HEAD
   function(x) removeWords(x, stopwords()) in the command. and save this as [cleanwords]."
   CorrectAnswer: cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))
   AnswerTests: omnitest(correctExpr='cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))')
   Hint: try typing cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))
+=======
+  function(x)removeWords(x,stopwords()) in the command. and save this as cleanwords."
+  CorrectAnswer: cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
+  AnswerTests: tm_map_test()
+  Hint: try typing cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
+>>>>>>> origin/master
   
 - Class: cmd_question
   Output: "What we can do with this cleaned words? We can try making a wordcloud!
