@@ -1,0 +1,175 @@
+- Class: meta
+  Course: mycourse
+  Lesson: workingexample
+  Author: your name goes here
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.2.21
+
+# 1
+- Class: text
+  Output: "Welcome back! in this tutorial, we are going to play with twitter data.
+  You will see a data frame called \"tweets\" in your environment, this data frame includes tweets
+  about Donald Trump collected from the 48 contiguous states."
+  
+# 2
+- Class: cmd_question
+  Output: Let's start by checking how many tweets are in our data set. You can use dim() command.
+  CorrectAnswer: dim(tweets)
+  AnswerTests: omnitest(correctExpr='dim(tweets)')
+  Hint: try typing dim(tweets)
+
+# 3  
+- Class: cmd_question
+  Output: "There are 3027 rows and 42 columns. Each row represent each tweet, 
+  and each column represents specific data for each tweet.
+  Let's investigate what informations are available using names() command."
+  CorrectAnswer: names(tweets)
+  AnswerTests: omnitest(correctExpr='names(tweets)')
+  Hint: try typing names(tweets)
+  
+# 4
+- Class: figure
+  Output: "Let's see where all these tweets are coming from 
+  using the \"place_lat\" and \"place_lon\" variables. 
+  Not every tweet is geocoded with latitude and longitude, so we will have to lose some tweets.
+  In our dataset, only 1614 tweets are geocoded, and 1413 tweets does not include geographic information.
+  In the map, each dot represent each tweet."
+  Figure: map.R
+  FigureType: new
+  
+# 5  
+- Class: text
+  Output: "Typical tweets include punctuations, URLs, and even emoticons !
+  We will remove all the unncessary stuff using regular expressions.
+  You can find a character vector called \"text\" in your environment. 
+  This vector only include the column \"text\" from \"tweets\", and will be used from now."
+  
+# 6  
+- Class: cmd_question
+  Output: "Using head() command, look at the first 3 tweets from the \"text\" file."
+  CorrectAnswer: head(text, 3)
+  AnswerTests: omnitest(correctExpr='head(text, 3)')
+  Hint: try typing head(text, 3) 
+ 
+# 7 
+- Class: mult_question
+  Output: "We will first remove URLs. How would you grab a pattern for that?"
+  AnswerChoices: http[^[:space:]]*; http[[:space:]]*; http[^[:space:]]; http[[:space:]]
+  CorrectAnswer: http[^[:space:]]*
+  AnswerTests: omnitest(correctVal='http[^[:space:]]*')
+  Hint: Remember "^" means "not", "[:space:]" means "all whitespace characters", and "*" means "zero or more times of repeat".
+
+# 8
+- Class: cmd_question
+  Output: "Remove all the URLs from \"text\" using gsub() command, and save it as \"clean\". "
+  CorrectAnswer: clean = gsub("http[^[:space:]]*", "", text)
+  AnswerTests: omnitest(correctExpr='clean = gsub("http[^[:space:]]*", "", text)')
+  Hint: try typing clean = gsub("http[^[:space:]]*", "", text)
+  
+# 9
+- Class: mult_question
+  Output: "Now let's keep only alphanumeric characters and whitespace. How would you grab a pattern for that?"
+  AnswerChoices: like this? [^[:alnum:][:space:]]*; like this? [^[:alpha:][:space:]]*; like this? [^[:alnum:]^[:space:]]*; like this? [[:alnum:][:space:]]*
+  CorrectAnswer: like this? [^[:alnum:][:space:]]*
+  AnswerTests: omnitest(correctVal='like this? [^[:alnum:][:space:]]*')
+  Hint: Remember "^" means "not", "[:alnum:]" means "alphanumeric characters", "[:space:]" means "all whitespace characters", and "*" means "zero or more times of repeat".
+
+
+# 10
+- Class: cmd_question
+Output: "Remove everything but alphanumeric characters and whitespace from \"clean\"
+using gsub() command, and again save it as \"clean\". "
+CorrectAnswer: clean = gsub("[^[:alnum:][:space:]]*","",clean) 
+AnswerTests: omnitest(correctExpr='clean = gsub("[^[:alnum:][:space:]]*","",clean)')
+Hint: try typing clean = gsub("[^[:alnum:][:space:]]*","",clean) 
+
+# 11
+- Class: cmd_question
+  Output: "Remove \"&amp\" from \"clean\"
+  using gsub() command, and again save it as \"clean\". "
+  CorrectAnswer: clean = gsub("&amp", "", clean)
+  AnswerTests: omnitest(correctExpr='clean = gsub("&amp", "", clean)')
+  Hint: try typing clean = gsub("&amp", "", clean) 
+  
+
+# 12
+- Class: cmd_question
+  Output: "Now remove every empty line from \"clean\" using gsub() command, 
+  and again save it as \"clean\". Remember \\n means an empty space."
+  CorrectAnswer: clean = gsub("\n", "", clean) 
+  AnswerTests: omnitest(correctExpr='clean = gsub("\n", "", clean)')
+  Hint: try typing clean = gsub("\n", "", clean)
+  
+# 13
+- Class: cmd_question
+  Output: "Now remove every \"RT\" from \"clean\" using gsub() command, 
+  and again save it as \"clean\". "
+  CorrectAnswer: clean = gsub("RT", "", clean_tweet) 
+  AnswerTests: omnitest(correctExpr='clean = gsub("RT", "", clean_tweet)')
+  Hint: try typing clean = gsub("RT", "", clean_tweet)
+ 
+# 14
+- Class: cmd_question
+  Output: "Please type sapply(clean, function(row) iconv(row, \"latin1\", \"ASCII\", sub=\"\"))  and save as \"clean\".
+  This is to remove all emoticons." 
+  CorrectAnswer: clean = sapply(clean, function(row) iconv(row, "latin1", "ASCII", sub=""))
+  AnswerTests: omnitest(correctExpr='clean = sapply(clean, function(row) iconv(row, "latin1", "ASCII", sub=""))')
+  Hint: try typing clean = sapply(clean, function(row) iconv(row, "latin1", "ASCII", sub=""))
+
+  
+# 15
+- Class: cmd_question
+  Output: "Using tolower() command, make everything to lowercase, and again call it \"clean\"." 
+  CorrectAnswer: clean = tolower(clean) 
+  AnswerTests: omnitest(correctExpr='clean = tolower(clean)')
+  Hint: try typing clean = tolower(clean)
+
+
+# 16
+- Class: cmd_question
+  Output: "That was a lot! now we want to change this cleaned data into
+  corpus with Corpus(VectorCorpus()) command. Save this as \"corpus\". " 
+  CorrectAnswer: corpus = Corpus(VectorSource(clean))
+  AnswerTests: omnitest(correctExpr='corpus = Corpus(VectorSource(clean))')
+  Hint: try typing corpus = Corpus(VectorSource(clean))
+
+# 17
+- Class: cmd_question
+  Output: "Now we will remove all the stop words such as is, a. 
+  tm_map() command will help us do that. You need to specify 
+  function(x) removeWords(x, stopwords()) in the command. and save this as \"corpus\"."
+  CorrectAnswer: corpus = tm_map(corpus, function(x) removeWords(x, stopwords()))
+  AnswerTests: tm_map_test()
+  Hint: try typing corpus = tm_map(corpus, function(x) removeWords(x, stopwords()))
+  
+  
+# 18
+- Class: cmd_question
+  Output: "Do you remember what we did in the last lesson? Let's make a wordcloud again!
+  There are many options you can specify in the command wordcloud(), but for now, 
+  we will use 3 options as follows; min.freq=30, random.color=TRUE, colors=brewer.pal(8,'Dark2') "
+  CorrectAnswer: wordcloud(corpus, min.freq=30, random.color=TRUE, colors=brewer.pal(8,"Dark2"))
+  AnswerTests: omnitest(correctExpr='wordcloud(corpus, min.freq=30, random.color=TRUE, colors=brewer.pal(8,"Dark2"))')
+  Hint: try typing wordcloud(corpus, min.freq=30, random.color=TRUE, colors=brewer.pal(8,"Dark2"))
+
+# 19
+- Class: figure
+  Output: "If you feel that wordcloud is not enough to get a sense that if the tweets about Donald Trump 
+  are more towards to positive or negative, we can calculate the score of positive tweets and negative tweets.
+  You can read through a made-up function \"get_score\"."
+  Figure: score.R
+  FigureType: new
+
+# 20
+- Class: cmd_question
+  Output: "Let's get the score for the tweets about Donald Trump. Using get_score() function with corpus. "
+  CorrectAnswer: get_score(corpus)
+  AnswerTests: omnitest(correctExpr='get_score(corpus)')
+  Hint: try typing get_score(corpus)
+  
+# 21
+- Class: text
+  Output: "Congratulations! You've finished with the lesson on text cleaning 
+  with regular expressions using twitter data!"
+

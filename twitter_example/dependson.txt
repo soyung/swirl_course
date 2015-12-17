@@ -1,0 +1,6 @@
+tm
+tm.lexicon.GeneralInquirer
+wordcloud
+slam
+grid
+ggplot2
