@@ -1,10 +1,10 @@
 - Class: meta
-  Course: mycourse
-  Lesson: workingexample
-  Author: your name goes here
+  Course: swirl_course
+  Lesson: twitter_example
+  Author: So Yung Choi
   Type: Standard
-  Organization: your organization's name goes here
-  Version: 2.2.21
+  Organization: JHU Biostats
+  Version: 2.3.1
 
 # 1
 - Class: text
@@ -78,11 +78,11 @@
 
 # 10
 - Class: cmd_question
-Output: "Remove everything but alphanumeric characters and whitespace from \"clean\"
-using gsub() command, and again save it as \"clean\". "
-CorrectAnswer: clean = gsub("[^[:alnum:][:space:]]*","",clean) 
-AnswerTests: omnitest(correctExpr='clean = gsub("[^[:alnum:][:space:]]*","",clean)')
-Hint: try typing clean = gsub("[^[:alnum:][:space:]]*","",clean) 
+  Output: "Remove everything but alphanumeric characters and whitespace from \"clean\"
+  using gsub() command, and again save it as \"clean\". "
+  CorrectAnswer: clean = gsub("[^[:alnum:][:space:]]*","",clean) 
+  AnswerTests: omnitest(correctExpr='clean = gsub("[^[:alnum:][:space:]]*","",clean)')
+  Hint: try typing clean = gsub("[^[:alnum:][:space:]]*","",clean) 
 
 # 11
 - Class: cmd_question
@@ -105,9 +105,9 @@ Hint: try typing clean = gsub("[^[:alnum:][:space:]]*","",clean)
 - Class: cmd_question
   Output: "Now remove every \"RT\" from \"clean\" using gsub() command, 
   and again save it as \"clean\". "
-  CorrectAnswer: clean = gsub("RT", "", clean_tweet) 
-  AnswerTests: omnitest(correctExpr='clean = gsub("RT", "", clean_tweet)')
-  Hint: try typing clean = gsub("RT", "", clean_tweet)
+  CorrectAnswer: clean = gsub("RT", "", clean) 
+  AnswerTests: omnitest(correctExpr='clean = gsub("RT", "", clean)')
+  Hint: try typing clean = gsub("RT", "", clean)
  
 # 14
 - Class: cmd_question
@@ -167,8 +167,17 @@ Hint: try typing clean = gsub("[^[:alnum:][:space:]]*","",clean)
   CorrectAnswer: get_score(corpus)
   AnswerTests: omnitest(correctExpr='get_score(corpus)')
   Hint: try typing get_score(corpus)
-  
+
 # 21
+- Class: text
+  Output: "The score for the tweets about Donald Trump turns out to be 0.31, 
+  which means about 31% of the tweets are positive, and 69% of them are negative.
+  Can you trust this result? People can say \"positive\" words when they actually mean something negative.
+  And the inclusion criteria for positive/negative terms are not perfect. So we can't be too confident about 
+  this score, but at least we can get a little sense out of it."
+
+
+# 22
 - Class: text
   Output: "Congratulations! You've finished with the lesson on text cleaning 
   with regular expressions using twitter data!"

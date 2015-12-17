@@ -3,7 +3,7 @@
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
 
-load("tweets.Rdata")
+load("./tweets.Rdata")
 text <- tweets$text
 
 .path_to_file <<- function(course, lesson, file_name){
