@@ -50,7 +50,7 @@ These tables are from Riki Kawaguchi's blog: https://bioinfomagician.wordpress.c
 *Table2* back slash functions and their descriptions
 
 
-You can combine functions in *Table1* and *Table2* to do more complicated patter matching. 
+You can combine functions in *Table1* and *Table2* to do more complicated pattern matching. 
 
 
 &nbsp; &nbsp; &nbsp; &nbsp; 

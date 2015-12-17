@@ -1,0 +1,30 @@
+---
+title: "POSIX Bracket Expressions"
+---
+&nbsp; &nbsp; &nbsp; &nbsp; 
+
+**POSIX bracket expressions** are character classes whicn include a set of characters. &nbsp; &nbsp;
+
+In POSIX bracket expresssions, **\-**(hyphen) means a **range**, and **\^**(caret) means **negative**
+
+
+| POSIX       | Description                      |
+|:-----------:|:--------------------------------:|
+| [:alnum:]   | Alphanumeric characters          |
+|  [:alpha:]  | Alphabetic characters            |
+|[:ascii:]    | ASCII characters                 |
+|[:blank:]    | space and tab                    |
+|[:cntrl:]    | Control characters               |
+| [:digit:]   | Digits                           |
+| [:graph:]   |Visible characters                |
+| [:lower:]   | Lowercase letters                |
+|  [:print:]  | Visible characters and spaces    |
+|   [:punct:] | Punctuation and symbols          |
+|  [:space:]  | All whitespace characters        |
+|[:upper:]    | Uppercase letters                |
+| [:word:]    | Word characters                  |
+|[:xdigitr:]  | Hexadecimal digits               |
+
+*Table1* list of POSIX bracket expressions and their descriptions
+
+

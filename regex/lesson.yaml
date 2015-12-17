@@ -1,16 +1,17 @@
 - Class: meta
-  Course: mycourse
-  Lesson: mylesson
+  Course: swirl_course
+  Lesson: regex
   Author: So Yung Choi
   Type: Standard
   Organization: JHU Biostats
   Version: 2.3.1
 
+# 1
 - Class: text
   Output: "Welcome to the swirl lesson on text cleaning with regular expression! 
-  This lesson is going to give you some basic tools for regular expression. 
-  And with the basic tools, we will dive into the real world example of text mining using tweets."
+  This lesson is going to give you some basic tools for regular expression."
   
+# 2  
 - Class: figure
   Output: "Before we start playing with regular expression, let's get familiar with 
   some of the most used commands and their use. Please read through this page on your viewr,
@@ -18,82 +19,121 @@
   Figure: basic.R
   FigureType: new
   
+# 3
 - Class: cmd_question
   Output: Let's start by looking at an example text extracted from Seinfeld script. Please type twix in your console.
   CorrectAnswer: "twix"
   AnswerTests: omnitest(correctExpr='twix')
   Hint: type twix
 
-- Class: cmd_question
+# 4
+- Class: mult_question
   Output: "It looks messy, doesn't it? We want to make this single character string into a list of character string by each line of the script. 
-  strsplit() command will do the job for us. 
-  Let's divide our example text (twix) by two empty lines."
+  strsplit() command will do the job for us.
+  Before we using strsplit() command, what do you think two empty lines will look like here?"
+  AnswerChoices: \n\n; \r\r; \W\W; \t\t
+  CorrectAnswer: \n\n
+  AnswerTests: omnitest(correctVal='\\n\\n')
+  Hint: \n means one new line! two new lines would be ...?
+
+# 5
+- Class: cmd_question
+  Output: "Now let's divide our example text (twix) by two empty lines using strsplit() command."
   CorrectAnswer: strsplit(twix, "\n\n")
   AnswerTests: omnitest(correctExpr='strsplit(twix, "\n\n")')
   Hint: try typing strsplit(twix, "\n\n")
-  
+
+# 6   
 - Class: cmd_question
   Output: "Now it looks much better. For more practice, 
-  let's save the unlisted version of these character strings, and call it [better]."
+  let's save the unlisted version of these character strings, and call it \"better\".
+  unlist() command will let us unlist the list of character strings."
   CorrectAnswer: better = unlist(strsplit(twix, "\n\n"))
   AnswerTests: omnitest(correctExpr='better = unlist(strsplit(twix, "\n\n"))')
   Hint: try typing better = unlist(strsplit(twix, "\n\n"))
 
-- Class: cmd_question
-  Output: "Did you notice that the character name GEORGE is misspelled at several lines.
+# 7   
+- Class: mult_question
+  Output: "Did you notice that the character name GEORGE is misspelled at several lines?
   Luckily, they all start with G and ends with colon. 
-  Let's fix the misspelled ones to GEORGE by using gsub() command, 
-  and save the updated one as [evenbetter]."
+  We can fix the misspelled ones to \"GEORGE:\" by using gsub() command,
+  but how can we let the computer know the pattern start with G and ends with colon?"
+  AnswerChoices: G.:; G*:; G.*:; G.+:;
+  CorrectAnswer: 'G.*:'
+  AnswerTests: omnitest(correctVal='G.*:')
+  Hint: . means any single string, and * means zero or more times of repeat  
+
+# 8
+- Class: cmd_question
+  Output: "Let's replace the misspelled ones to \"GEORGE:\" by using gsub() command, 
+  and save the updated one as \"evenbetter\"."
   CorrectAnswer: evenbetter = gsub("G.*:", "GEORGE:", better)
   AnswerTests: omnitest(correctExpr='evenbetter = gsub("G.*:", "GEORGE:", better)')
   Hint: try typing evenbetter = gsub("G.*:", "GEORGE:", better)
-  
 
+# 9
+- Class: figure
+  Output: "What should we do if we want to remove all the punctuations? Before we go on,
+  please read through POSIX Bracket Expressions that will be super useful."
+  Figure: posix.R
+  FigureType: new
+
+# 10
+- Class: mult_question
+  Output: "Now, why don't we remove all punctuations except for the dollar sign?
+  Again, we can use gsub() command to grab a pattern and replace them to something else.
+  Then how would you express all punctuations except for \"$\" ?
+  We will need to use double negatives."
+  AnswerChoices: like this? "[^$[:^punct:]]"; like this? "[:punct:]"; like this? "[^$,.[:^punct:]]"; like this? "[^?![:^punct:]]";
+  CorrectAnswer: like this? "[^$[:^punct:]]"
+  AnswerTests: omnitest(correctVal='like this? "[^$[:^punct:]]"')
+  Hint: Remember "[^$]" means "not $", "[:^punct:]" means "not [:punct:]". And if we combine them together..?
+
+# 11
 - Class: cmd_question
-  Output: "Now, why don't we remove all punctuations except for the dollar sign? 
-  again, using gsub() command, and save it as [muchbetter]. 
-  You will need to use perl=TRUE option in your command"
+  Output: "Using gsub() command remove all the punctuations except for the dollar sign,
+  and save it as \"muchbetter\". 
+  You will need to add perl=TRUE option in your command."
   CorrectAnswer: muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)
   AnswerTests: omnitest(correctExpr='muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)')
   Hint: try typing muchbetter = gsub("[^$[:^punct:]]", "", evenbetter, perl=TRUE)
-  
+
+# 12  
 - Class: cmd_question
   Output: "To better deal with each word, we will convert every word into lower case using tolower() command! 
-  and save this as [lower]."
+  and save this as \"lower\"."
   CorrectAnswer: lower = tolower(muchbetter)
   AnswerTests: omnitest(correctExpr='lower = tolower(muchbetter)')
   Hint: try typing lower = tolower(muchbetter)
-  
+
+# 13  
 - Class: cmd_question
   Output: "We will convert the character strings into corpus with Corpus(VectorCorpus()) command.
-  And save this as [corpus]"
+  And save this as \"corpus\"."
   CorrectAnswer: corpus = Corpus(VectorSource(lower))
   AnswerTests: omnitest(correctExpr='corpus = Corpus(VectorSource(lower))')
   Hint: try typing corpus = Corpus(VectorSource(lower))
-  
+
+# 14  
 - Class: cmd_question
   Output: "Now we will remove all the stop words such as is, a. 
   tm_map() command will help us do that. You need to specify 
-<<<<<<< HEAD
-  function(x) removeWords(x, stopwords()) in the command. and save this as [cleanwords]."
+  function(x) removeWords(x, stopwords()) in the command. and save this as \"cleanwords\"."
   CorrectAnswer: cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))
-  AnswerTests: omnitest(correctExpr='cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))')
-  Hint: try typing cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))
-=======
-  function(x)removeWords(x,stopwords()) in the command. and save this as cleanwords."
-  CorrectAnswer: cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
   AnswerTests: tm_map_test()
-  Hint: try typing cleanwords = tm_map(corpus, function(x)removeWords(x,stopwords()))
->>>>>>> origin/master
-  
+  Hint: try typing cleanwords = tm_map(corpus, function(x) removeWords(x, stopwords()))
+
+# 15 
 - Class: cmd_question
   Output: "What we can do with this cleaned words? We can try making a wordcloud!
-  There are many options you can specify in the command wordcloud(), but for now, try type 
-  wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,'Dark2')) in your console."
+  There are many options you can specify in the command wordcloud(), but for now, 
+  we will use 3 options as follows; min.freq=1, random.color=TRUE, colors=brewer.pal(8,'Dark2') "
   CorrectAnswer: wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,"Dark2"))
   AnswerTests: omnitest(correctExpr='wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,"Dark2"))')
   Hint: try typing wordcloud(cleanwords, min.freq=1, random.color=TRUE, colors=brewer.pal(8,"Dark2"))
-  
+
+# 16  
 - Class: text
-  Output: "Congratulations! You've done with basic lesson on text cleaning with regular expression. 
-  Continue on to the workingexample lesson to play with larger and messier text data!"
+  Output: "Congratulations! You've done with basic lesson on text cleaning with regular expression."
+
+

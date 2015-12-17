@@ -25,3 +25,5 @@ tm_map_test <- function(){
     isTRUE(grepl("^cleanwords", expr_string)) &&
     isTRUE(grepl("^cleanwords\\W", expr_string))
 }
+
+

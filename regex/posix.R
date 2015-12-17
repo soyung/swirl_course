@@ -1,4 +1,4 @@
-filename ="basic.html"
+filename ="posix.html"
 swirlfile <- .path_to_file("swirl_course", "mylesson/html", filename)
 tf <- tempfile()
 dir.create(tf)
