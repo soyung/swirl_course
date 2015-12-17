@@ -70,7 +70,7 @@
 # 9
 - Class: mult_question
   Output: "Now let's keep only alphanumeric characters and whitespace. How would you grab a pattern for that?"
-  AnswerChoices: like this? [^[:alnum:][:space:]]*; like this? [^[:alpha:][:space:]]*; like this? [^[:alnum:]^[:space:]]*; like this? [[:alnum:][:space:]]*
+  AnswerChoices: like this? [^[:alnum:][:space:]]*; like this? [^[:alpha:][:space:]]; like this? [^[:alnum:]^[:space:]]*; like this? [[:alnum:][:space:]]*
   CorrectAnswer: like this? [^[:alnum:][:space:]]*
   AnswerTests: omnitest(correctVal='like this? [^[:alnum:][:space:]]*')
   Hint: Remember "^" means "not", "[:alnum:]" means "alphanumeric characters", "[:space:]" means "all whitespace characters", and "*" means "zero or more times of repeat".
@@ -138,7 +138,8 @@
 - Class: cmd_question
   Output: "Now we will remove all the stop words such as is, a. 
   tm_map() command will help us do that. You need to specify 
-  function(x) removeWords(x, stopwords()) in the command. and save this as \"corpus\"."
+  function(x) removeWords(x, stopwords()) in the command. and save this as \"corpus\".
+  This will take a while to run."
   CorrectAnswer: corpus = tm_map(corpus, function(x) removeWords(x, stopwords()))
   AnswerTests: tm_map_test()
   Hint: try typing corpus = tm_map(corpus, function(x) removeWords(x, stopwords()))

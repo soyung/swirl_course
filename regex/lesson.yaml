@@ -134,6 +134,7 @@
 
 # 16  
 - Class: text
-  Output: "Congratulations! You've done with basic lesson on text cleaning with regular expression."
+  Output: "Congratulations! You've done with basic lesson on text cleaning with regular expression.
+  Please continue on the twitter_example lesson to play with bigger and messier data !"
 
 
