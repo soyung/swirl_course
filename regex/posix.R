@@ -1,5 +1,5 @@
 filename ="posix.html"
-swirlfile <- .path_to_file("swirl_course", "mylesson/html", filename)
+swirlfile <- .path_to_file("swirl_course", "regex/html", filename)
 tf <- tempfile()
 dir.create(tf)
 htmlfile = file.path(tf,filename)
